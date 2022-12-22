@@ -7,7 +7,7 @@ const parrafo = document.getElementById("warnings");
 
 let repetido = false;
 let arregloUsuarios;
-fetch("http://localhost:8080/usuarios")
+fetch("https://proyectointegrador-production-75ae.up.railway.app/usuarios")
   .then((response) => {
     return response.json();
   })
