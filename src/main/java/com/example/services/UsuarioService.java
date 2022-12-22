@@ -35,6 +35,8 @@ public class UsuarioService {
 	
 	
 	
+	
+	
 	public boolean eliminarPorId(Integer id) {
 		if (usuarioRepositorio.findById(id).isPresent()) {
 			usuarioRepositorio.deleteById(id);

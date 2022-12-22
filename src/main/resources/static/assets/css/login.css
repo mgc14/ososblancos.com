@@ -1,0 +1,38 @@
+.body{
+    font-weight: 300; 
+    color: white !important;}
+
+.form-control, .btn{
+    min-height: 1.5rem;
+    line-height: initial;
+}
+
+.img-login{
+    background-image: url(http://drive.google.com/uc?export=view&id=12hY44c4lpCJRYj35h93IoTwzfIVCd_Wr);
+    background-size: cover;
+    background-position: center; 
+}
+.btn-primary:active {
+    background-color: #3e8e41;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+  }
+.btn-primary{
+    font-size: 1.3rem;
+    background-color: #57CE45;
+    border: 0px;
+    display: inline-block;
+    cursor: pointer;
+    text-align: center;	
+    text-decoration: none;
+    outline: none;
+    color: #fff;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 9px #999;
+  }
+  
+  .login{
+    margin-top: 50px;
+  }
+  

@@ -24,8 +24,8 @@ public class ProductosModel {
 	private String categoria;
 	
 	/*-------empiezan relaciones----------*/
-	@OneToMany(mappedBy="producto")
-	private ArrayList<OrdenProductoModel> ordenProductos;
+	//@OneToMany
+	//private ArrayList<OrdenProductoModel> ordenProductos;
 	
 	public ProductosModel() {
 		super();
@@ -40,7 +40,7 @@ public class ProductosModel {
 		this.imagen_frontal = imagen_frontal;
 		this.imagen_nutricional = imagen_nutricional;
 		this.categoria = categoria;
-		this.ordenProductos = ordenProductos;
+		//this.ordenProductos = ordenProductos;
 	}
 
 	public Integer getId() {
@@ -80,13 +80,13 @@ public class ProductosModel {
 		this.categoria = categoria;
 	}
 
-	public ArrayList<OrdenProductoModel> getOrdenProductos() {
-		return ordenProductos;
-	}
+	//public ArrayList<OrdenProductoModel> getOrdenProductos() {
+	//	return ordenProductos;
+	//}
 
-	public void setOrdenProductos(ArrayList<OrdenProductoModel> ordenProductos) {
-		this.ordenProductos = ordenProductos;
-	}
+	//public void setOrdenProductos(ArrayList<OrdenProductoModel> ordenProductos) {
+	//	this.ordenProductos = ordenProductos;
+	//}
 	
 	
 }
