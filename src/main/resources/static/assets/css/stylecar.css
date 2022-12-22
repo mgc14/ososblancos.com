@@ -54,3 +54,14 @@ margin-top: 2%;
         background-color: #a90404; 
         color: rgb(255, 255, 255);
     }
+label1{
+    border-top:solid #666;
+    margin-bottom: 8rem;
+    font-size: larger;
+}
+#direc{
+    padding-top: 1rem;
+}
+.mensajge{
+    margin: 5px;
+}
