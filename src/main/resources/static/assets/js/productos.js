@@ -1,6 +1,6 @@
 let arregloProductos;
 
-fetch("http://localhost:8080/productos")
+fetch("https://proyectointegrador-production-75ae.up.railway.app/productos")
   .then((response) => {
     return response.json();
   })
