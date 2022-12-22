@@ -8,5 +8,5 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/productos")
 public class ProductoController {
 	@Autowired
-	Usuario
+	//Usuario
 }
