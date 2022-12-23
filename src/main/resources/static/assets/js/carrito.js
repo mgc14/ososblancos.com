@@ -87,7 +87,7 @@ function desplegarCarrito() {
 }
 
 function fetchActivo(){
-	fetch("http://localhost:8080/activo")
+	fetch("https://proyectointegrador-production-75ae.up.railway.app/activo")
 	.then((response) => {
 		return response.json();
 	})
@@ -104,7 +104,7 @@ function fetchActivo(){
 				orden.id_producto = element.id_producto;
 				orden.id_usuario = usuarioActivo[0].id_usuario;
 				orden.precio_final = precioFinal;
-				fetch("http://localhost:8080/ordenes", {
+				fetch("https://proyectointegrador-production-75ae.up.railway.app/ordenes", {
 					method: "POST",
 					headers: {
 						"Content-Type": "application/json",
