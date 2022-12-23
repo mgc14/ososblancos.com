@@ -7,7 +7,7 @@ const parrafo = document.getElementById("warnings");
 
 let repetido = false;
 let arregloUsuarios;
-fetch("http://localhost:8080/usuarios")
+fetch("https://proyectointegrador-production-75ae.up.railway.app/usuarios")
   .then((response) => {
     return response.json();
   })
@@ -64,7 +64,7 @@ form.addEventListener("submit", (e) => {
     if (repetido) {
       parrafo.innerHTML = "El correo electronico ya está registrado";
     } else {
-      fetch("http://localhost:8080/usuarios", {
+      fetch("https://proyectointegrador-production-75ae.up.railway.app/usuarios", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

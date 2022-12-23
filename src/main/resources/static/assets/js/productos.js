@@ -1,6 +1,6 @@
 let arregloProductos;
 
-fetch("http://localhost:8080/productos")
+fetch("https://proyectointegrador-production-75ae.up.railway.app/productos")
   .then((response) => {
     return response.json();
   })
@@ -72,7 +72,7 @@ function agregarCarrito(id) {
         carritoProducto.imagen_frontal = element.imagen_frontal;
         carritoProducto.imagen_nutricional = element.imagen_nutricional;
         carritoProducto.categoria = element.categoria;
-        fetch("http://localhost:8080/carrito", {
+        fetch("https://proyectointegrador-production-75ae.up.railway.app/carrito", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
