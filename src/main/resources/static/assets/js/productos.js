@@ -1,6 +1,6 @@
 let arregloProductos;
 
-fetch("https://proyectointegrador-production-75ae.up.railway.app/productos")
+fetch("http://localhost:8080/productos")
   .then((response) => {
     return response.json();
   })
@@ -20,7 +20,7 @@ function desplegarFiltro(filtro) {
       box.classList = "card m-4 shadow";
       box.innerHTML = `
     
-    <a href="#">
+    <a href="#" onclick="agregarCarrito(${element.id})">
     <img
     src="${element.imagen_frontal}"
     class="card-img-top"
@@ -44,7 +44,7 @@ function desplegar() {
     box.classList = "card m-4 shadow";
     box.innerHTML = `
     
-    <a href="#" onclick="agregarCarrito(${index + 1})">
+    <a href="#" onclick="agregarCarrito(${element.id})">
     <img
     src="${element.imagen_frontal}"
     class="card-img-top"
@@ -72,7 +72,7 @@ function agregarCarrito(id) {
         carritoProducto.imagen_frontal = element.imagen_frontal;
         carritoProducto.imagen_nutricional = element.imagen_nutricional;
         carritoProducto.categoria = element.categoria;
-        fetch("https://proyectointegrador-production-75ae.up.railway.app/carrito", {
+        fetch("http://localhost:8080/carrito", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

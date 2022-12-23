@@ -1,7 +1,7 @@
 let arregloUsuarios;
 let existencia = false;
 
-fetch("https://proyectointegrador-production-75ae.up.railway.app/usuarios")
+fetch("http://localhost:8080/usuarios")
   .then((response) => {
     return response.json();
   })
@@ -16,7 +16,7 @@ fetch("https://proyectointegrador-production-75ae.up.railway.app/usuarios")
 function obtenerActivo() {
   let correo = document.getElementById("exampleInputEmail1").value;
   let password = document.getElementById("exampleInputPassword1").value;
-  fetch("https://proyectointegrador-production-75ae.up.railway.app/activo", {
+  fetch("http://localhost:8080/activo", {
     method: "DELETE",
   })
     .then((res) => res.text()) // or res.json()
@@ -27,8 +27,7 @@ function obtenerActivo() {
         let activo = new Object();
         activo.id_usuario = element.id;
         alert("Sesion iniciada con exito");
-        window.location.href = "https://proyectointegrador-production-75ae.up.railway.app/index.html";
-        fetch("https://proyectointegrador-production-75ae.up.railway.app/activo", {
+        fetch("http://localhost:8080/activo", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -38,7 +37,7 @@ function obtenerActivo() {
           .then((response) => response.json())
           .then((data) => {
             console.log("Success:", data);
-            window.location.href = "https://proyectointegrador-production-75ae.up.railway.app/index.html";
+            window.location.href = "http://localhost:8080/index.html";
           })
           .catch((error) => {
             console.error("Error:", error);

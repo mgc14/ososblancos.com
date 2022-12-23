@@ -7,7 +7,7 @@ let precioFinal = 0;
 let direccion = "";
 let usuarioActivo;
 
-fetch("https://proyectointegrador-production-75ae.up.railway.app/carrito")
+fetch("http://localhost:8080/carrito")
 	.then((response) => {
 		return response.json();
 	})
@@ -87,7 +87,7 @@ function desplegarCarrito() {
 }
 
 function fetchActivo(){
-	fetch("https://proyectointegrador-production-75ae.up.railway.app/activo")
+	fetch("http://localhost:8080/activo")
 	.then((response) => {
 		return response.json();
 	})
@@ -104,7 +104,7 @@ function fetchActivo(){
 				orden.id_producto = element.id_producto;
 				orden.id_usuario = usuarioActivo[0].id_usuario;
 				orden.precio_final = precioFinal;
-				fetch("https://proyectointegrador-production-75ae.up.railway.app/ordenes", {
+				fetch("http://localhost:8080/ordenes", {
 					method: "POST",
 					headers: {
 						"Content-Type": "application/json",
@@ -135,11 +135,11 @@ function enviarOrden() {
 
 	
 
-	fetch("https://proyectointegrador-production-75ae.up.railway.app/carrito", {
+	fetch("http://localhost:8080/carrito", {
 		method: "DELETE",
 	})
 		.then((res) => res.text()) // or res.json()
 		.then((res) => console.log(res));
 	alert("Orden colocada\n¡Gracias por comprar en Royal Bear!")
-	window.location.href = "https://proyectointegrador-production-75ae.up.railway.app/carrito.html"
+	window.location.href = "http://localhost:8080/carrito.html"
 }
