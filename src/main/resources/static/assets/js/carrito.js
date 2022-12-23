@@ -1,29 +1,35 @@
 let arregloCarrito;
 let precioTotal = 0;
-let iva=0;
-let precioEnvio=0;
-let precioFinal=0;
+let iva = 0;
+let precioEnvio = 0;
+let precioFinal = 0;
 
-fetch("http://localhost:8080/carrito")
-  .then((response) => {
-    return response.json();
-  })
-  .then((data) => {
-    arregloCarrito = data;
-    desplegarCarrito();
-  })
-  .catch((e) => {
-    console.log(e);
-  });
+let direccion = "";
+let usuarioActivo;
+
+fetch("https://proyectointegrador-production-75ae.up.railway.app/carrito")
+	.then((response) => {
+		return response.json();
+	})
+	.then((data) => {
+		arregloCarrito = data;
+		desplegarCarrito();
+	})
+	.catch((e) => {
+		console.log(e);
+	});
 
 function desplegarCarrito() {
-  document.getElementById("carrito_despliegue").innerHTML = "";
-  for (let index = 0; index < arregloCarrito.length; index++) {
-    console.log(index);
-    const box = document.createElement("div");
-    box.classList = "card mb-3";
-    box.style = "max-height: auto;";
-    box.innerHTML = `
+	precioTotal = 0;
+	iva = 0;
+	precioEnvio = 0;
+	precioFinal = 0;
+	document.getElementById("carrito_despliegue").innerHTML = "";
+	for (let index = 0; index < arregloCarrito.length; index++) {
+		const box = document.createElement("div");
+		box.classList = "card mb-3";
+		box.style = "max-height: auto;";
+		box.innerHTML = `
     
 
 
@@ -60,20 +66,80 @@ function desplegarCarrito() {
     </div>
     </div>
     `;
-    document.getElementById("carrito_despliegue").appendChild(box);
-    if (!document.getElementById("carrito_despliegue").innerHTML=="") {
-      precioEnvio=99;
-    }
-    precioTotal += arregloCarrito[index].precio;
-  }
-  iva=(precioTotal/100)*16
-  precioFinal=precioTotal+iva+precioEnvio;
-  document.getElementById("precio_total").innerHTML = precioTotal;
-  document.getElementById("precio_iva").innerHTML = iva;
-  document.getElementById("precio_envio").innerHTML = precioEnvio+".00";
-  document.getElementById("precio_final").innerHTML = precioFinal;
+		document.getElementById("carrito_despliegue").appendChild(box);
+		if (!document.getElementById("carrito_despliegue").innerHTML == "") {
+			precioEnvio = 99;
+		}
+		precioTotal += arregloCarrito[index].precio;
+	}
+	iva = (precioTotal / 100) * 16;
+	precioFinal = precioTotal + iva + precioEnvio;
+	document.getElementById("precio_total").innerHTML =
+		"$" + precioTotal.toFixed(2);
+	document.getElementById("precio_iva").innerHTML = "$" + iva.toFixed(2);
+	if (precioTotal + iva > 1500) {
+		precioEnvio = 0;
+	}
+	document.getElementById("precio_envio").innerHTML =
+		"$" + precioEnvio.toFixed(2);
+	document.getElementById("precio_final").innerHTML =
+		"$" + precioFinal.toFixed(2);
+}
 
-  
-  
-  console.log(precioTotal);
+function fetchActivo(){
+	fetch("https://proyectointegrador-production-75ae.up.railway.app/activo")
+	.then((response) => {
+		return response.json();
+	})
+	.then((data) => {
+		usuarioActivo = data;
+		console.log(usuarioActivo);
+		console.log(usuarioActivo[0].id_usuario);
+	})
+	.then(()=>{
+		if (!Object.keys(usuarioActivo).length===0) {
+			arregloCarrito.forEach((element) => {
+				let orden = new Object();
+				orden.direccion = direccion;
+				orden.id_producto = element.id_producto;
+				orden.id_usuario = usuarioActivo[0].id_usuario;
+				orden.precio_final = precioFinal;
+				fetch("https://proyectointegrador-production-75ae.up.railway.app/ordenes", {
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json",
+					},
+					body: JSON.stringify(orden),
+				})
+					.then((response) => response.json())
+					.then((data) => {
+						console.log("Success:", data);
+					})
+					.catch((error) => {
+						console.error("Error:", error);
+					});
+			});
+		}	
+	})
+	.catch((e) => {
+		console.log(e);
+	});
+}
+
+function enviarOrden() {
+	direccion += document.getElementById("calle").value + " ";
+	direccion += document.getElementById("colonia").value + " ";
+	direccion += document.getElementById("estado").value;
+	fetchActivo();
+	
+
+	
+
+	fetch("https://proyectointegrador-production-75ae.up.railway.app/carrito", {
+		method: "DELETE",
+	})
+		.then((res) => res.text()) // or res.json()
+		.then((res) => console.log(res));
+	alert("Orden colocada\n¡Gracias por comprar en Royal Bear!")
+	window.location.href = "https://proyectointegrador-production-75ae.up.railway.app/carrito.html"
 }

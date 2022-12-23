@@ -12,8 +12,6 @@ fetch("https://proyectointegrador-production-75ae.up.railway.app/productos")
     console.log(e);
   });
 
-  
-
 function desplegarFiltro(filtro) {
   document.getElementById("productos_despliegue").innerHTML = "";
   arregloProductos.forEach((element) => {
@@ -41,12 +39,12 @@ function desplegarFiltro(filtro) {
 }
 function desplegar() {
   document.getElementById("productos_despliegue").innerHTML = "";
-  arregloProductos.forEach((element) => {
+  arregloProductos.forEach((element, index) => {
     const box = document.createElement("div");
     box.classList = "card m-4 shadow";
     box.innerHTML = `
     
-    <a href="#">
+    <a href="#" onclick="agregarCarrito(${index + 1})">
     <img
     src="${element.imagen_frontal}"
     class="card-img-top"
@@ -56,13 +54,40 @@ function desplegar() {
     </a>
     <div class="card-body" >
     <p class="card-text fw-bold">${element.marca}</p>
-    <small class="text-secondary "> ${element.precio}.00 </small>
+    <small class="text-secondary "> ${element.precio} </small>
     </div>
     `;
     document.getElementById("productos_despliegue").appendChild(box);
   });
 }
 
-function agregarCarrito(id){
-  
+function agregarCarrito(id) {
+  if (confirm("¿Agregar producto a carrito?")) {
+    arregloProductos.forEach((element) => {
+      if (element.id == id) {
+        let carritoProducto=new Object();
+        carritoProducto.id_producto = id;
+        carritoProducto.precio = element.precio;
+        carritoProducto.marca = element.marca;
+        carritoProducto.imagen_frontal = element.imagen_frontal;
+        carritoProducto.imagen_nutricional = element.imagen_nutricional;
+        carritoProducto.categoria = element.categoria;
+        fetch("https://proyectointegrador-production-75ae.up.railway.app/carrito", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(carritoProducto),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            console.log("Success:", data);
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+          });
+      } else {
+      }
+    });
+  }
 }

@@ -32,7 +32,7 @@ public class ProductosModel {
 	}
 	
 	public ProductosModel(Integer id, Integer precio, String marca, String imagen_frontal, String imagen_nutricional,
-			String categoria, ArrayList<OrdenProductoModel> ordenProductos) {
+			String categoria) {
 		super();
 		this.id = id;
 		this.precio = precio;

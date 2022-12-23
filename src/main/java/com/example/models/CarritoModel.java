@@ -16,6 +16,7 @@ import jakarta.persistence.Table;
 		@GeneratedValue(strategy=GenerationType.IDENTITY)
 		@Column(unique=true, nullable=false)
 		private Integer id;
+		private Integer id_producto;
 		private Integer precio;
 		private String marca;
 		private String imagen_frontal;
@@ -30,16 +31,21 @@ import jakarta.persistence.Table;
 			super();
 		}
 		
-		public CarritoModel(Integer id, Integer precio, String marca, String imagen_frontal, String imagen_nutricional,
-				String categoria, ArrayList<OrdenProductoModel> ordenProductos) {
+		
+
+		public CarritoModel(Integer id, Integer id_producto, Integer precio, String marca, String imagen_frontal,
+				String imagen_nutricional, String categoria) {
 			super();
 			this.id = id;
+			this.id_producto = id_producto;
 			this.precio = precio;
 			this.marca = marca;
 			this.imagen_frontal = imagen_frontal;
 			this.imagen_nutricional = imagen_nutricional;
 			this.categoria = categoria;
 		}
+
+
 
 		public Integer getId() {
 			return id;
@@ -77,4 +83,17 @@ import jakarta.persistence.Table;
 		public void setCategoria(String categoria) {
 			this.categoria = categoria;
 		}
+
+
+
+		public Integer getId_producto() {
+			return id_producto;
+		}
+
+
+
+		public void setId_producto(Integer id_producto) {
+			this.id_producto = id_producto;
+		}
+		
 	}
