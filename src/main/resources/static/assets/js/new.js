@@ -27,6 +27,7 @@ function obtenerActivo() {
         let activo = new Object();
         activo.id_usuario = element.id;
         alert("Sesion iniciada con exito");
+        window.location.href = "https://proyectointegrador-production-75ae.up.railway.app/index.html";
         fetch("https://proyectointegrador-production-75ae.up.railway.app/activo", {
           method: "POST",
           headers: {
